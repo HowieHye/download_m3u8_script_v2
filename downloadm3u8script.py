@@ -48,7 +48,7 @@ class FindM3U8URL(object):
             pass
         else:
             self.index_url = self.index_url + ".html"
-        patOfUrl = '/vodplay/(.*?)-[0-9].html'
+        patOfUrl = '/vodplay/(.*?)-[0-9]+.html'
         self.urlOut = re.compile(patOfUrl, re.S).findall(self.index_url)[0]
         logging.info("urlOut:" + self.urlOut)
 
