@@ -184,7 +184,11 @@ if __name__ == '__main__':
     m3u8url = FindM3U8URL()
     m3u8url.index_url = m3u8_url
     prename, urllist, namelist = m3u8url.run()
-    # print(namelist)
+    if not os.path.exists('Download'):
+        os.mkdir('Download')
+    os.chdir('Download')
+    os.mkdir(str(prename))
+    os.chdir(str(prename))
     for i in range(0, len(urllist)):
         start = time.time()
         save_name = prename + namelist[i] + '.mp4'
