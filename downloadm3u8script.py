@@ -187,20 +187,25 @@ if __name__ == '__main__':
     if not os.path.exists('Download'):
         os.mkdir('Download')
     os.chdir('Download')
-    os.mkdir(str(prename))
+    if not os.path.exists(str(prename)):
+        os.mkdir(str(prename))
     os.chdir(str(prename))
     for i in range(0, len(urllist)):
         start = time.time()
         save_name = prename + namelist[i] + '.mp4'
-        print("正在从" + urllist[i] + "下载" + save_name)
-        logging.info("正在从" + urllist[i] + "下载" + save_name)
-        print("请耐心等待!")
-        print("目录下会生成很多.ts文件,不用担心,下载完成后会自动删除")
-        print("正在下载,请稍后!")
-        M3U8 = DownLoadM3U8(urllist[i], save_name)
-        M3U8.run()
-        end = time.time()
-        print(f'下载 {save_name} 共耗时 {end - start} 秒')
-        logging.info(f'下载 {save_name} 共耗时 {end - start} 秒')
+        if os.path.exists(save_name):
+            print(f'{save_name} 已存在,跳过')
+            pass
+        else:
+            print("正在从" + urllist[i] + "下载" + save_name)
+            logging.info("正在从" + urllist[i] + "下载" + save_name)
+            print("请耐心等待!")
+            print("目录下会生成很多.ts文件,不用担心,下载完成后会自动删除")
+            print("正在下载,请稍后!")
+            M3U8 = DownLoadM3U8(urllist[i], save_name)
+            M3U8.run()
+            end = time.time()
+            print(f'下载 {save_name} 共耗时 {end - start} 秒')
+            logging.info(f'下载 {save_name} 共耗时 {end - start} 秒')
     print("感谢使用,再见!")
     logging.info("感谢使用,再见!")
