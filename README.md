@@ -1,4 +1,4 @@
-# DownloadM3U8_Script_New
+# DownloadM3U8_Script_V2
 
 ## 环境
 
